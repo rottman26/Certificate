@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)file:///C:/Users/rottman/Desktop/riley_birthday_certificate.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Riley's Birthday Gift Certificate</title>
+<link href="./Riley&#39;s Birthday Gift Certificate_files/css2" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a1a2e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Lato', sans-serif;
+    padding: 20px;
+  }
+
+  @media print {
+    body {
+      background: white;
+      padding: 0;
+      margin: 0;
+    }
+    .print-btn { display: none !important; }
+    .certificate {
+      box-shadow: none !important;
+      margin: 0 !important;
+      page-break-inside: avoid;
+    }
+  }
+
+  .print-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #c8102e;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 3px;
+    z-index: 100;
+    transition: background 0.2s;
+  }
+  .print-btn:hover { background: #a00020; }
+
+  .certificate {
+    width: 850px;
+    min-height: 600px;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  }
+
+  /* Background texture */
+  .certificate::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 20% 50%, rgba(200,16,46,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(0,100,170,0.04) 0%, transparent 60%);
+    z-index: 0;
+  }
+
+  /* Watermark */
+  .watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 180px;
+    color: rgba(0,0,0,0.03);
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    white-space: nowrap;
+    z-index: 0;
+    user-select: none;
+  }
+
+  /* Outer border */
+  .border-outer {
+    position: absolute;
+    inset: 12px;
+    border: 2px solid #c8102e;
+    z-index: 1;
+  }
+  .border-inner {
+    position: absolute;
+    inset: 17px;
+    border: 1px solid #daa520;
+    z-index: 1;
+  }
+
+  /* Corner ornaments */
+  .corner {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    z-index: 2;
+  }
+  .corner svg { width: 100%; height: 100%; }
+  .corner-tl { top: 8px; left: 8px; }
+  .corner-tr { top: 8px; right: 8px; transform: scaleX(-1); }
+  .corner-bl { bottom: 8px; left: 8px; transform: scaleY(-1); }
+  .corner-br { bottom: 8px; right: 8px; transform: scale(-1); }
+
+  .content {
+    position: relative;
+    z-index: 3;
+    padding: 50px 60px 40px;
+    text-align: center;
+  }
+
+  /* Header */
+  .gift-label {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 6px;
+    color: #999;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .birthday-line {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    color: #c8102e;
+    font-style: italic;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+  }
+
+  .name {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 900;
+    color: #1a1a1a;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .turning {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 5px;
+    color: #888;
+    margin-bottom: 28px;
+  }
+  .turning span {
+    color: #c8102e;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  /* Divider */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0 40px 28px;
+  }
+  .divider-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, #daa520, transparent); }
+  .divider-diamond {
+    width: 8px; height: 8px;
+    background: #c8102e;
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* Match info */
+  .match-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: #aaa;
+    margin-bottom: 20px;
+  }
+
+  /* Teams section */
+  .teams-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 28px;
+  }
+
+  .team-block {
+    flex: 1;
+    max-width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .team-logo {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .team-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .team-name {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #1a1a1a;
+    text-align: center;
+  }
+
+  .vs-block {
+    padding: 0 30px;
+    text-align: center;
+  }
+  .vs-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 900;
+    font-style: italic;
+    color: #daa520;
+    display: block;
+    line-height: 1;
+  }
+  .vs-sub {
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: #bbb;
+    margin-top: 4px;
+  }
+
+  /* Ticket details */
+  .details-band {
+    background: #1a1a1a;
+    margin: 0 -60px;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .detail-item {
+    text-align: center;
+  }
+  .detail-label {
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .detail-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    white-space: nowrap;
+  }
+  .detail-value.highlight {
+    color: #daa520;
+  }
+
+  .detail-sep {
+    width: 1px;
+    height: 36px;
+    background: #333;
+  }
+
+  /* Bottom */
+  .bottom-content {
+    padding: 24px 60px 20px;
+    text-align: center;
+  }
+
+  .tickets-banner {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #c8102e;
+    border: 1px solid #c8102e;
+    padding: 6px 20px;
+    margin-bottom: 18px;
+  }
+
+  .seat-info {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 20px;
+  }
+
+  .seat-item {
+    text-align: center;
+  }
+  .seat-label {
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: #aaa;
+    margin-bottom: 3px;
+  }
+  .seat-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+
+  .footer-line {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #ccc;
+    font-style: italic;
+  }
+
+
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨 Print Certificate</button>
+
+<div class="certificate">
+
+  <div class="watermark">⚽</div>
+  <div class="border-outer"></div>
+  <div class="border-inner"></div>
+
+  <!-- Corner ornaments -->
+  <div class="corner corner-tl">
+    <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5,5 L5,30 Q5,5 30,5 Z" fill="none" stroke="#daa520" stroke-width="1.5"></path>
+      <path d="M5,5 L25,5 L5,25 Z" fill="none" stroke="#c8102e" stroke-width="1"></path>
+      <circle cx="5" cy="5" r="3" fill="#c8102e"></circle>
+      <circle cx="30" cy="5" r="1.5" fill="#daa520"></circle>
+      <circle cx="5" cy="30" r="1.5" fill="#daa520"></circle>
+      <path d="M10,5 L10,12 M5,10 L12,10" stroke="#daa520" stroke-width="0.8" opacity="0.6"></path>
+    </svg>
+  </div>
+  <div class="corner corner-tr">
+    <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5,5 L5,30 Q5,5 30,5 Z" fill="none" stroke="#daa520" stroke-width="1.5"></path>
+      <path d="M5,5 L25,5 L5,25 Z" fill="none" stroke="#c8102e" stroke-width="1"></path>
+      <circle cx="5" cy="5" r="3" fill="#c8102e"></circle>
+      <circle cx="30" cy="5" r="1.5" fill="#daa520"></circle>
+      <circle cx="5" cy="30" r="1.5" fill="#daa520"></circle>
+    </svg>
+  </div>
+  <div class="corner corner-bl">
+    <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5,5 L5,30 Q5,5 30,5 Z" fill="none" stroke="#daa520" stroke-width="1.5"></path>
+      <path d="M5,5 L25,5 L5,25 Z" fill="none" stroke="#c8102e" stroke-width="1"></path>
+      <circle cx="5" cy="5" r="3" fill="#c8102e"></circle>
+      <circle cx="30" cy="5" r="1.5" fill="#daa520"></circle>
+      <circle cx="5" cy="30" r="1.5" fill="#daa520"></circle>
+    </svg>
+  </div>
+  <div class="corner corner-br">
+    <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5,5 L5,30 Q5,5 30,5 Z" fill="none" stroke="#daa520" stroke-width="1.5"></path>
+      <path d="M5,5 L25,5 L5,25 Z" fill="none" stroke="#c8102e" stroke-width="1"></path>
+      <circle cx="5" cy="5" r="3" fill="#c8102e"></circle>
+      <circle cx="30" cy="5" r="1.5" fill="#daa520"></circle>
+      <circle cx="5" cy="30" r="1.5" fill="#daa520"></circle>
+    </svg>
+  </div>
+
+  <div class="content">
+    <div class="gift-label">A Birthday Gift For</div>
+    <div class="birthday-line">Happy 21st Birthday</div>
+    <div class="name">Riley</div>
+    <div class="turning">Turning <span>21</span> · This Gift Is Yours</div>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-diamond"></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="match-title">· You Are Going To ·</div>
+
+    <!-- Teams -->
+    <div class="teams-row">
+
+      <!-- Liverpool -->
+      <div class="team-block">
+        <div class="team-logo">
+          <img src="./Riley&#39;s Birthday Gift Certificate_files/liverpool-fc-4.svg" alt="Liverpool FC crest" onerror="this.onerror=null;this.src=&#39;https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg&#39;">
+        </div>
+        <div class="team-name">Liverpool FC</div>
+      </div>
+
+      <!-- VS -->
+      <div class="vs-block">
+        <span class="vs-text">vs</span>
+        <div class="vs-sub">MATCHDAY</div>
+      </div>
+
+      <!-- Leeds United -->
+      <div class="team-block">
+        <div class="team-logo">
+          <img src="./Riley&#39;s Birthday Gift Certificate_files/leeds-united-afc-3.svg" alt="Leeds United crest" onerror="this.onerror=null;this.src=&#39;https://upload.wikimedia.org/wikipedia/en/5/54/Leeds_United_F.C._logo.svg&#39;">
+        </div>
+        <div class="team-name">Leeds United</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Dark details band -->
+  <div class="details-band">
+    <div class="detail-item">
+      <div class="detail-label">Date</div>
+      <div class="detail-value highlight">August 2, 2026</div>
+    </div>
+    <div class="detail-sep"></div>
+    <div class="detail-item">
+      <div class="detail-label">Venue</div>
+      <div class="detail-value">Soldier Field</div>
+    </div>
+    <div class="detail-sep"></div>
+    <div class="detail-item">
+      <div class="detail-label">Location</div>
+      <div class="detail-value">Chicago, Illinois</div>
+    </div>
+    <div class="detail-sep"></div>
+    <div class="detail-item">
+      <div class="detail-label">Kickoff</div>
+      <div class="detail-value highlight">Match Day</div>
+    </div>
+  </div>
+
+  <!-- Bottom section -->
+  <div class="bottom-content">
+    <div class="tickets-banner">✦ 2 Tickets Enclosed ✦</div>
+
+    <div class="seat-info">
+      <div class="seat-item">
+        <div class="seat-label">Section</div>
+        <div class="seat-val">207</div>
+      </div>
+      <div class="seat-item" style="color:#daa520">
+        <div class="seat-label" style="color:#daa520">⬥</div>
+        <div class="seat-val" style="font-size:28px; color:#daa520">·</div>
+      </div>
+      <div class="seat-item">
+        <div class="seat-label">Row</div>
+        <div class="seat-val">5</div>
+      </div>
+      <div class="seat-item" style="color:#daa520">
+        <div class="seat-label" style="color:#daa520">⬥</div>
+        <div class="seat-val" style="font-size:28px; color:#daa520">·</div>
+      </div>
+      <div class="seat-item">
+        <div class="seat-label">Seats</div>
+        <div class="seat-val">12 &amp; 13</div>
+      </div>
+    </div>
+
+    <div class="footer-line">Presented with love on the occasion of your 21st birthday &nbsp;·&nbsp; Enjoy every moment ⚽</div>
+  </div>
+
+</div>
+
+
+
+</body></html>
